@@ -655,115 +655,143 @@
   }
 
   .projects-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 20px;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-track {
     display: flex;
-    flex-direction: column;
-    gap: 100px;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 20px 0;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .carousel-track::-webkit-scrollbar-track {
+    background: rgba(0, 217, 255, 0.1);
+    border-radius: 3px;
+  }
+
+  .carousel-track::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    border-radius: 3px;
   }
 
   .project-showcase {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: all 0.8s ease;
-    padding: 40px;
-    background: rgba(10, 14, 39, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 28px;
-    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+    min-width: 380px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.05));
+    border: 2px solid rgba(0, 217, 255, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
-  .project-showcase:nth-child(even) {
-    direction: rtl;
-  }
-
-  .project-showcase:nth-child(even) .project-details {
-    direction: ltr;
-  }
-
-  .project-showcase:nth-child(even) .project-image {
-    order: 1;
+  .project-showcase:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 0 50px rgba(0, 217, 255, 0.4), 0 0 100px rgba(168, 85, 247, 0.2);
+    border-color: rgba(0, 217, 255, 0.6);
   }
 
   .project-image {
     position: relative;
-    border-radius: 20px;
+    width: 100%;
+    height: 280px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(168, 85, 247, 0.2));
-    border: 2px solid rgba(0, 217, 255, 0.3);
-    transition: all 0.5s ease;
-  }
-
-  .project-image:hover {
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 0 50px rgba(0, 217, 255, 0.4), 0 0 100px rgba(168, 85, 247, 0.3);
-    border-color: var(--cyan);
   }
 
   .project-image img {
     width: 100%;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
-    transition: all 0.5s ease;
+    transition: transform 0.4s ease;
   }
 
-  .project-image:hover img {
-    transform: scale(1.1);
+  .project-showcase:hover .project-image img {
+    transform: scale(1.08);
+  }
+
+  .project-details {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .project-details h3 {
-    font-size: 32px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 700;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-family: 'Space Grotesk', sans-serif;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+    line-height: 1.3;
   }
 
   .project-details p {
-    font-size: 16px;
+    font-size: 13px;
     color: rgba(224, 224, 224, 0.8);
     margin-bottom: 16px;
-    line-height: 1.8;
+    line-height: 1.6;
+    flex: 1;
   }
 
   .project-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 24px;
+    gap: 6px;
+    margin-bottom: 16px;
   }
 
   .tech-tag {
     background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(168, 85, 247, 0.15));
     color: var(--cyan);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 600;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 5px 10px;
+    border-radius: 14px;
     border: 1px solid rgba(0, 217, 255, 0.2);
+    white-space: nowrap;
   }
 
   .project-links {
     display: flex;
-    gap: 16px;
+    gap: 8px;
   }
 
   .project-links a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 14px;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s;
-    border: 2px solid rgba(0, 217, 255, 0.3);
+    border: 1.5px solid rgba(0, 217, 255, 0.3);
     color: var(--cyan);
   }
 
@@ -771,8 +799,81 @@
     background: var(--gradient-primary);
     border-color: var(--cyan);
     color: var(--white);
-    box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
-    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .projects-container {
+      padding: 0 16px;
+    }
+
+    .project-showcase {
+      min-width: 320px;
+    }
+
+    .carousel-track {
+      gap: 16px;
+    }
+
+    .project-image {
+      height: 220px;
+    }
+
+    .project-details {
+      padding: 16px;
+    }
+
+    .project-details h3 {
+      font-size: 15px;
+    }
+
+    .project-details p {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .projects-container {
+      padding: 0 12px;
+    }
+
+    .project-showcase {
+      min-width: 280px;
+    }
+
+    .carousel-track {
+      gap: 12px;
+      padding: 16px 0;
+    }
+
+    .project-image {
+      height: 180px;
+    }
+
+    .project-details {
+      padding: 12px;
+    }
+
+    .project-details h3 {
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .project-details p {
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .tech-tag {
+      font-size: 10px;
+      padding: 4px 8px;
+    }
+
+    .project-links a {
+      font-size: 10px;
+      padding: 6px 10px;
+    }
   }
 
   /* ── EXPERIENCE ── */
@@ -1449,18 +1550,163 @@
       max-width: 320px;
     }
     .section-title { font-size: 32px; }
+    .section-label { font-size: 11px; }
     .about-content { grid-template-columns: 1fr; gap: 40px; }
     .developer-highlights {
       grid-template-columns: 1fr;
     }
+    .stats-grid {
+      grid-template-columns: 2fr 2fr;
+      gap: 16px;
+    }
     .contact-content { grid-template-columns: 1fr; gap: 32px; }
-    .projects-container {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+    .contact-form {
+      padding: 24px;
+    }
+    .form-group input,
+    .form-group textarea {
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+    #contact-submit-btn {
+      padding: 14px;
+      font-size: 14px;
     }
     .skills-grid { grid-template-columns: 1fr; }
-    .floating-element { display: none; } /* Hide on mobile for performance */
+    .floating-element { display: none; }
+    section { padding: 60px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    section { padding: 48px 16px; }
+    .section-content { padding: 0 12px; }
+    .section-title { 
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .section-label { 
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+    .hero-grid { gap: 24px; }
+    .profile-image-wrap { 
+      max-width: 240px;
+      margin: 0 auto;
+    }
+    .profile-image { 
+      width: 240px;
+      height: 240px;
+    }
+    .profile-copy h1 { 
+      font-size: 24px;
+    }
+    .profile-copy .title { 
+      font-size: 12px;
+    }
+    .profile-meta {
+      flex-direction: column;
+      gap: 8px;
+    }
+    .terminal { 
+      padding: 16px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    .terminal-body { 
+      padding: 16px;
+      font-size: 12px;
+    }
+    .hero-actions {
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hero-actions .btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 13px;
+    }
+    .about-text h2 {
+      font-size: 24px;
+    }
+    .about-text p {
+      font-size: 14px;
+    }
+    .developer-highlights {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .highlight-card {
+      padding: 16px;
+    }
+    .highlight-card h4 {
+      font-size: 14px;
+    }
+    .highlight-card p {
+      font-size: 12px;
+    }
+    .stat-item {
+      padding: 20px;
+    }
+    .stat-number {
+      font-size: 28px;
+    }
+    .stat-label {
+      font-size: 12px;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+    .contact-item {
+      padding: 12px;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      font-size: 16px;
+    }
+    .contact-details h4 {
+      font-size: 14px;
+    }
+    .contact-details p {
+      font-size: 12px;
+    }
+    .contact-form {
+      padding: 16px;
+    }
+    .contact-form h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group input,
+    .form-group textarea {
+      padding: 10px 12px;
+      font-size: 13px;
+      border-radius: 8px;
+    }
+    #contact-submit-btn {
+      padding: 12px;
+      font-size: 13px;
+      gap: 6px;
+    }
+    .social-links {
+      gap: 12px;
+    }
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+    footer {
+      padding: 32px 16px;
+    }
+    footer p {
+      font-size: 12px;
+    }
   }
 </style>
    
@@ -1606,103 +1852,96 @@
       <h2 class="section-title">Projects</h2>
     </div>
     <div class="projects-container">
-      <div class="project-showcase" data-project="1">
-        <div class="project-image">
-          <img src="crm-lead-management.jpg" alt="CRM & Lead Management System" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMTExIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5DUk0gJiBMRWFkPC90ZXh0Pgo8L3N2Zz4='">
-        </div>
-        <div class="project-details">
-          <h3>CRM & Lead Management System</h3>
-          <p>Role-based CRM with lead tracking, calling API integration, real-time analytics dashboard, and team management.</p>
-          <div class="project-tech">
-            <span class="tech-tag">Laravel</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">REST API</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Razorpay</span>
-            <span class="tech-tag">Stripe</span>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="projectCarousel">
+          <div class="project-showcase">
+            <div class="project-image">
+              <img src="crm-lead-management.jpg" alt="CRM & Lead Management System" />
+            </div>
+            <div class="project-details">
+              <h3>CRM & Lead Management</h3>
+              <p>Role-based CRM with lead tracking, calling API integration, real-time analytics dashboard.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">REST API</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
+              </div>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
-          </div>
-        </div>
-      </div>
 
-      <div class="project-showcase" data-project="2">
-        <div class="project-image">
-          <img src="payment-automation.jpg" alt="Payment Automation Platform" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMTExIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5QYXltZW50PC90ZXh0Pgo8L3N2Zz4='">
-        </div>
-        <div class="project-details">
-          <h3>Payment Automation Platform</h3>
-          <p>Automated invoicing and transaction management platform with Razorpay & Stripe dual-gateway integration.</p>
-          <div class="project-tech">
-            <span class="tech-tag">Laravel</span>
-            <span class="tech-tag">Razorpay</span>
-            <span class="tech-tag">Stripe</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">JavaScript</span>
+          <div class="project-showcase">
+            <div class="project-image">
+              <img src="payment-automation.jpg" alt="Payment Automation Platform" />
+            </div>
+            <div class="project-details">
+              <h3>Payment Automation Platform</h3>
+              <p>Automated invoicing and transaction management with Razorpay & Stripe integration.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">Razorpay</span>
+                <span class="tech-tag">Stripe</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
+              </div>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
-          </div>
-        </div>
-      </div>
 
-      <div class="project-showcase" data-project="3">
-        <div class="project-image">
-          <img src="ai-chatbot-system.jpg" alt="AI Chatbot System" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMTExIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5BSDogQ2hhdGJvdDwvdGV4dD4KPC9zdmc+'">
-        </div>
-        <div class="project-details">
-          <h3>AI Chatbot System</h3>
-          <p>Intelligent chatbot with automated response handling and workflow optimization to reduce manual support effort.</p>
-          <div class="project-tech">
-            <span class="tech-tag">AI</span>
-            <span class="tech-tag">Chatbot</span>
-            <span class="tech-tag">Workflow</span>
-            <span class="tech-tag">Automation</span>
-            <span class="tech-tag">JavaScript</span>
+          <div class="project-showcase">
+            <div class="project-image">
+              <img src="ai-chatbot-system.jpg" alt="AI Chatbot System" />
+            </div>
+            <div class="project-details">
+              <h3>AI Chatbot System</h3>
+              <p>Intelligent chatbot with automated response handling and workflow optimization.</p>
+              <div class="project-tech">
+                <span class="tech-tag">AI</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">React</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
+              </div>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
-          </div>
-        </div>
-      </div>
 
-      <div class="project-showcase" data-project="4">
-        <div class="project-image">
-          <img src="ecommerce-website.jpg" alt="E-Commerce Website" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMTExIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5FLUNvbW1lcmNlPC90ZXh0Pgo8L3N2Zz4='">
-        </div>
-        <div class="project-details">
-          <h3>E-Commerce Website</h3>
-          <p>Full-featured shopping platform with product management, cart, secure payment checkout, and order tracking.</p>
-          <div class="project-tech">
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Tailwind CSS</span>
-            <span class="tech-tag">E-commerce</span>
-            <span class="tech-tag">Checkout</span>
+          <div class="project-showcase">
+            <div class="project-image">
+              <img src="ecommerce-website.jpg" alt="E-Commerce Website" />
+            </div>
+            <div class="project-details">
+              <h3>E-Commerce Platform</h3>
+              <p>Full-featured shopping platform with product management, cart, and secure checkout.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Tailwind</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
+              </div>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
-          </div>
-        </div>
-      </div>
 
-      <div class="project-showcase" data-project="5">
-        <div class="project-image">
-          <img src="hr-trainer.jpg" alt="Human Resources Manager - AI Trainer" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMTExIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5IUjogQWk8L3RleHQ+Cjwvc3ZnPg=='">
-        </div>
-        <div class="project-details">
-          <h3>Human Resources Manager - AI Trainer</h3>
-          <p>AI-driven HR manager and trainer system to automate workflows, enhance employee training, and support intelligent decision-making.</p>
-          <div class="project-tech">
-            <span class="tech-tag">Laravel</span>
-            <span class="tech-tag">AI</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">HR</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
+          <div class="project-showcase">
+            <div class="project-image">
+              <img src="hr-trainer.jpg" alt="Human Resources Manager" />
+            </div>
+            <div class="project-details">
+              <h3>HR Manager - AI Trainer</h3>
+              <p>AI-driven HR manager system to automate workflows and enhance employee training.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">AI</span>
+                <span class="tech-tag">Automation</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/darshank0tadiya" target="_blank">View Code</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2081,6 +2320,65 @@
   }
 
   animateStats();
+
+  // Auto-scrolling carousel for projects
+  const carousel = document.getElementById('projectCarousel');
+  if (carousel) {
+    let scrollAmount = 0;
+    const scrollSpeed = 1; // pixels per frame
+    const pauseBetweenScrolls = 3000; // pause duration in ms
+    let isScrolling = false;
+    let autoScrollInterval;
+
+    function autoScroll() {
+      if (!isScrolling) {
+        isScrolling = true;
+        let scrollTarget = scrollAmount + 400; // scroll one card + gap
+        
+        let currentScroll = carousel.scrollLeft;
+        const scrollStep = () => {
+          if (currentScroll < scrollTarget) {
+            currentScroll += scrollSpeed * 5;
+            carousel.scrollLeft = Math.min(currentScroll, scrollTarget);
+            requestAnimationFrame(scrollStep);
+          } else {
+            // Check if we need to loop back to start
+            if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
+              carousel.scrollLeft = 0;
+            }
+            setTimeout(() => {
+              isScrolling = false;
+            }, pauseBetweenScrolls);
+          }
+        };
+        requestAnimationFrame(scrollStep);
+      }
+    }
+
+    // Start auto-scroll
+    autoScrollInterval = setInterval(autoScroll, pauseBetweenScrolls + 600);
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => {
+      clearInterval(autoScrollInterval);
+      isScrolling = false;
+    });
+
+    // Resume on mouse leave
+    carousel.addEventListener('mouseleave', () => {
+      autoScrollInterval = setInterval(autoScroll, pauseBetweenScrolls + 600);
+    });
+
+    // Stop auto-scroll on manual scroll (touch or scroll wheel)
+    let scrollTimeout;
+    carousel.addEventListener('scroll', () => {
+      clearInterval(autoScrollInterval);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        autoScrollInterval = setInterval(autoScroll, pauseBetweenScrolls + 600);
+      }, 2000);
+    });
+  }
 
   // Smooth scrolling for nav links
   document.querySelectorAll('.nav-links a').forEach(link => {
